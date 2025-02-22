@@ -1,4 +1,3 @@
-
 function isDayEven() {
     const day = new Date().getDate();
     return day % 2 === 0;

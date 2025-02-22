@@ -1,10 +1,9 @@
-
 const { isDayEven } = require('./index.js');
 const assert = require('assert');
 
 function testIsDayEven() {
-   
     const originalDate = Date;
+
     global.Date = class extends Date {
         constructor() {
             super('2025-10-02'); 
@@ -21,8 +20,9 @@ function testIsDayEven() {
 
     assert.strictEqual(isDayEven(), false, 'Должно быть false для нечётного числа');
 
+    // Возвращаем оригинальный Date
     global.Date = originalDate; 
 }
 
 testIsDayEven();
-console.log(" тесты прошли успешно!");
+console.log("Тесты прошли успешно!");
