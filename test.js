@@ -2,26 +2,22 @@ const { isDayEven } = require('./index.js');
 const assert = require('assert');
 
 function testIsDayEven() {
-    const originalDate = Date;
+    
+    const originalGetDate = Date.prototype.getDate;
 
-    global.Date = class extends Date {
-        constructor() {
-            super('2025-10-02'); 
-        }
+   
+    Date.prototype.getDate = function() {
+        return 2;  
     };
-
     assert.strictEqual(isDayEven(), true, 'Должно быть true для чётного числа');
 
-    global.Date = class extends Date {
-        constructor() {
-            super('2025-10-01'); 
-        }
+   
+    Date.prototype.getDate = function() {
+        return 1;  
     };
-
     assert.strictEqual(isDayEven(), false, 'Должно быть false для нечётного числа');
 
-    // Возвращаем оригинальный Date
-    global.Date = originalDate; 
+    Date.prototype.getDate = originalGetDate; 
 }
 
 testIsDayEven();
